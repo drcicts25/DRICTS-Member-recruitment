@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dharmaraja College ICT Society - Home</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* --- Base Styles --- */
+        :root {
+            --theme-color-0x0: #e0c02e;
+            --theme-color-st: #d3b01536; /* Semi-transparent gold */
+        }
+
+        html { scroll-behavior: smooth; }
+
+        * { margin: 0; padding: 0; color: white; box-sizing: border-box; }
+
+        /* Typography */
+        h1, h2, h3, h4, a { font-family: "Aquatico", "Segoe UI", sans-serif; }
+        span, p, button { font-family: "OpenSans", "Open Sans", sans-serif; }
+
+        body { background-color: #0d0d0d; min-height: 100vh; overflow-x: hidden; display: flex; flex-direction: column; }
+        
+        /* --- Header (2 Centered Logos) --- */
+        header {
+            position: fixed; top: 0; background-color: rgba(13, 13, 13, 0.85);
+            backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+            height: 100px; width: 100%; z-index: 50;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            display: flex; justify-content: center; align-items: center;
+        }
+        .header-logos { display: flex; gap: 4em; justify-content: center; align-items: center; }
+        .header-logos a img {
+            height: 65px; width: auto; object-fit: contain;
+            transition: transform 0.3s ease, filter 0.3s ease;
+        }
+        .header-logos a:hover img {
+            transform: scale(1.05); filter: drop-shadow(0px 0px 12px var(--theme-color-st));
+        }
+
+        /* --- Hero Section (Technological Giant Block) --- */
+        .hero-section {
+            margin-top: 45px;
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            overflow: hidden;
+            padding: 0 20px;
+            /* Technological Grid Background */
+            background-color: #0d0d0d;
+            background-image: 
+                linear-gradient(rgba(224, 192, 46, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(224, 192, 46, 0.05) 1px, transparent 1px);
+            background-size: 40px 40px;
+            background-position: center center;
+        }
+
+        /* Glowing Center Orb Effect */
+        .hero-section::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60vw;
+            height: 60vw;
+            max-width: 800px;
+            max-height: 800px;
+            background: radial-gradient(circle, var(--theme-color-st) 0%, transparent 60%);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        /* Top and Bottom Fade to blend grid */
+        .hero-section::after {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(180deg, #0d0d0d 0%, transparent 20%, transparent 80%, #0d0d0d 100%);
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        /* Hero Content */
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            max-width: 900px;
+            animation: fadeIn 1s ease-out;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: var(--theme-color-0x0);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .hero-title {
+            font-size: 4.5rem;
+            line-height: 1.1;
+            text-shadow: 0px 0px 30px rgba(224, 192, 46, 0.4);
+            margin-bottom: 25px;
+        }
+
+        .hero-desc {
+            font-size: 1.1rem;
+            color: #cccccc;
+            max-width: 600px;
+            margin: 0 auto 40px auto;
+            line-height: 1.6;
+        }
+
+        /* --- Call to Action Button --- */
+        .btn-register {
+            display: inline-block;
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            color: var(--theme-color-0x0);
+            border-radius: 40px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: 2px solid var(--theme-color-0x0);
+            background-color: rgba(13, 13, 13, 0.8);
+            box-shadow: 0px 0px 20px rgba(224, 192, 46, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-register:hover {
+            background-color: var(--theme-color-st);
+            box-shadow: 0px 0px 30px rgba(224, 192, 46, 0.5);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        /* --- Footer --- */
+        footer {
+    background-color: #000;
+
+    /* Logo */
+    & > img {
+        display: block;
+        align-items: center;
+        width: 120px;
+        object-fit: cover;
+        padding: 6px;
+        padding-top: 6px;
+        margin: auto;
+    }
+
+    /* Navigation */
+    & > ul {
+        list-style-type: none;
+        display: flex;
+        max-width: 700px;
+        justify-content: space-between;
+        margin: auto;
+        li {
+            display: inline-block;
+            position: relative;
+            & > a {
+                width: 10em;
+                text-decoration: none;
+                text-align: center;
+            }
+        }
+    }
+
+    & > hr {
+        height: 2px;
+        border: none;
+        border-radius: 1px;
+        width: 80%;
+        background-color: var(--theme-color-0x0);
+        margin: 1.5em auto;
+    }
+
+    /* Social links */
+    & > section {
+        display: flex;
+        margin: auto;
+        max-width: 400px;
+        justify-content: space-between;
+        padding: 0 0.01em;
+        & > a > img {
+            width: 40px;
+        }
+    }
+
+    & > p {
+        text-align: center;
+        font-size: 0.8rem;
+        padding: 35px 0 20px;
+        color: rgb(174, 174, 174);
+    }
+}
+
+
+        /* Animations */
+        @keyframes fadeIn { 
+            from { opacity: 0; transform: translateY(30px); } 
+            to { opacity: 1; transform: translateY(0); } 
+        }
+
+        /* Responsive Design */
+        @media only screen and (max-width: 768px) {
+            .hero-title { font-size: 3rem; }
+            .hero-subtitle { font-size: 1rem; }
+            .hero-desc { font-size: 1rem; padding: 0 10px; }
+            .header-logos { gap: 1.5em; }
+            .header-logos a img { height: 45px; }
+        }
+        
+        @media only screen and (max-width: 480px) {
+            .hero-title { font-size: 2.2rem; }
+            .btn-register { padding: 12px 30px; font-size: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header with 2 Centered Logos -->
+    <header>
+        <div class="header-logos">
+            <a href=""><img src="Crest - White.png" alt="Dharmaraja College Logo" /></a>
+            <a href=""><img src="ICT - White.png" alt="SYNC Logo" /></a>
+        </div>
+    </header>
+
+    <!-- Giant Technological Block / Hero Section -->
+    <main class="hero-section">
+        <div class="hero-content">
+            <p class="hero-subtitle">Dharmaraja College ICT Society</p>
+            <h1 class="hero-title">NEW MEMBER<br>RECRUITMENT</h1>
+            <p class="hero-desc">
+                Step into the future of technology. Join the ultimate club for innovators, programmers, and creators. Shape your path in the digital world with us.
+            </p>
+            
+            <!-- Link this to your form file -->
+            <a href="form.html" class="btn-register">Register Now</a>
+        </div>
+    </main>
+
+       <!-- Footer -->
+    <footer id="footer">
+    <img src="imgs/favicon.png" alt="Sync24 Logo" />
+    <hr />
+    <section>
+      <a href="https://facebook.com/drcicts" target="_blank"><img src="imgs/fb.png" alt="facebook" /></a>
+      <a href="https://instagram.com/drcicts" target="_blank"><img src="imgs/insta.png" alt="instagram" /></a>
+      <a href="https://www.youtube.com/@drcicts" target="_blank"><img src="imgs/yt.png" alt="Youtube" /></a>
+    </section>
+    <p>COPYRIGHT 2026 © DHARMARAJA COLLEGE ICT SOCIETY.</p>
+  </footer>
+</body>
+</html>

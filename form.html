@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dharmaraja College ICT Society - Registration</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* --- Base Styles from Provided CSS --- */
+        :root {
+            --theme-color-0x0: #e0c02e;
+            --theme-color-st: #d3b01536;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        * { margin: 0; padding: 0; color: white; box-sizing: border-box; }
+
+        /* Using standard fallbacks if custom fonts are missing locally */
+        h1, h2, h3, h4, a { font-family: "Aquatico", "Segoe UI", sans-serif; }
+        span, li, label, p, input, select, textarea, button { font-family: "OpenSans", "Open Sans", sans-serif; }
+
+        body { background-color: #0d0d0d; min-height: 100vh; overflow-x: hidden; }
+        main { padding-bottom: 80px; padding-top: 120px; }
+
+         header {
+            position: fixed; top: 0; background-color: #0d0d0d;
+            height: 100px; width: 100%; z-index: 10;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            display: flex; justify-content: center; align-items: center;
+        }
+        .header-logos {
+            display: flex; 
+            gap: 1em; 
+            justify-content: center; 
+            align-items: center;
+        }
+        .header-logos img {
+            height: 65px; /* Adjust height to fit your logos */
+            width: auto;
+            object-fit: contain;
+            transition: transform 0.3s ease, filter 0.3s ease;
+        }
+        .header-logos a:hover img {
+            transform: scale(1.05);
+            filter: drop-shadow(0px 0px 12px var(--theme-color-st));
+        }
+
+
+        /* --- Typography & Layout --- */
+        h1.title { text-align: center; font-size: 2.5em; text-shadow: 0px 0px 20px #fff8; margin-bottom: 10px; }
+        p.subtitle { text-align: center; max-width: 800px; margin: 0 auto 40px auto; font-size: 1.1em; padding: 0 20px; }
+        label span { color: red; font-size: 1.2em; padding-left: 5px; }
+
+        /* --- Form Container --- */
+        form { max-width: 800px; margin: auto; padding: 1.5em; }
+        form > section.form-body {
+            background-color: #232222e0; border-radius: 1em; padding: 3.5em;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        /* --- Inputs --- */
+        .input-group { margin-bottom: 2em; display: flex; flex-direction: column; }
+        .input-group label { font-weight: 600; margin-bottom: 8px; font-size: 0.95em; color: #ccc;}
+        
+        input[type="text"], input[type="email"], input[type="tel"], input[type="number"], input[type="date"], textarea, select {
+            width: 100%; background-color: transparent; font-size: 1em;
+            padding: 0.7em 0 0.4em; border: none; border-bottom: 1px solid #fff8;
+            outline: none; transition: border-bottom 0.3s;
+        }
+        input:focus, textarea:focus, select:focus { border-bottom: 1px solid var(--theme-color-0x0); }
+        textarea { resize: vertical; min-height: 40px; }
+        select { background-color: #0d0d0d; color: white; cursor: pointer; }
+        select option { background-color: #232222; }
+        input[type="date"]::-webkit-calendar-picker-indicator { filter: invert(1); cursor: pointer; }
+
+        /* Radio & Checkbox Styling */
+        .options-group { display: flex; flex-direction: column; gap: 10px; margin-top: 10px; }
+        .option-item { display: flex; align-items: center; gap: 10px; cursor: pointer; }
+        .option-item input { width: 18px; height: 18px; accent-color: var(--theme-color-0x0); cursor: pointer; }
+
+        /* --- Multi-step Logic --- */
+        .step { display: none; animation: fadeIn 0.4s ease; }
+        .step.active { display: block; }
+        .step-title { font-size: 1.5em; color: var(--theme-color-0x0); margin-bottom: 1.5em; border-bottom: 1px dashed #fff3; padding-bottom: 10px; }
+
+        /* --- Buttons --- */
+        .btn-container { display: flex; justify-content: space-between; margin-top: 2em; padding-top: 1em; border-top: 1px solid #fff3;}
+        button {
+            padding: 0.6em 2em; font-size: 1rem; text-transform: uppercase;
+            color: var(--theme-color-0x0); border-radius: 30px; font-weight: 700;
+            letter-spacing: 1px; transition: 300ms; cursor: pointer;
+            border: 1px solid var(--theme-color-0x0); background-color: transparent;
+        }
+        button:hover { background-color: var(--theme-color-st); box-shadow: 0px 0px 15px var(--theme-color-st); }
+        .btn-prev { color: #fff; border-color: #fff8; }
+        .btn-prev:hover { background-color: rgba(255,255,255,0.1); box-shadow: none;}
+
+        /* --- Footer --- */
+        footer {
+    background-color: #000;
+
+    /* Logo */
+    & > img {
+        display: block;
+        align-items: center;
+        width: 120px;
+        object-fit: cover;
+        padding: 6px;
+        padding-top: 6px;
+        margin: auto;
+    }
+
+    /* Navigation */
+    & > ul {
+        list-style-type: none;
+        display: flex;
+        max-width: 700px;
+        justify-content: space-between;
+        margin: auto;
+        li {
+            display: inline-block;
+            position: relative;
+            & > a {
+                width: 10em;
+                text-decoration: none;
+                text-align: center;
+            }
+        }
+    }
+
+    & > hr {
+        height: 2px;
+        border: none;
+        border-radius: 1px;
+        width: 80%;
+        background-color: var(--theme-color-0x0);
+        margin: 1.5em auto;
+    }
+
+    /* Social links */
+    & > section {
+        display: flex;
+        margin: auto;
+        max-width: 400px;
+        justify-content: space-between;
+        padding: 0 0.01em;
+        & > a > img {
+            width: 40px;
+        }
+    }
+
+    & > p {
+        text-align: center;
+        font-size: 0.8rem;
+        padding: 35px 0 20px;
+        color: rgb(174, 174, 174);
+    }
+}
+
+        /* --- Loader (Gold/Dark Theme) --- */
+        .loader-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(13, 13, 13, 0.9); display: none;
+            justify-content: center; align-items: center; z-index: 1000;
+        }
+        .tech-loader { width: 80px; height: 80px; position: relative; }
+        .tech-loader div {
+            box-sizing: border-box; position: absolute; width: 100%; height: 100%;
+            border: 3px solid transparent; border-radius: 50%;
+        }
+        .tech-loader div:nth-child(1) { border-top-color: var(--theme-color-0x0); animation: spin 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite; }
+        .tech-loader div:nth-child(2) { border-right-color: #fff; animation: spin 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite reverse; inset: 10px; width: calc(100% - 20px); height: calc(100% - 20px); }
+        .tech-loader div:nth-child(3) { border-bottom-color: var(--theme-color-0x0); animation: spin 1.5s linear infinite; inset: 20px; width: calc(100% - 40px); height: calc(100% - 40px); }
+
+        /* --- Success Popup --- */
+        .popup-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.8); display: none; justify-content: center; align-items: center; z-index: 1001;
+        }
+        .popup-box {
+            background: #232222; padding: 40px; border-radius: 1em; text-align: center; max-width: 400px;
+            border: 1px solid var(--theme-color-0x0); box-shadow: 0 0 30px var(--theme-color-st);
+            animation: popIn 0.4s ease;
+        }
+        .popup-box h2 { color: var(--theme-color-0x0); margin-bottom: 15px; font-size: 1.8em;}
+        .popup-box p { color: #ccc; margin-bottom: 25px; line-height: 1.5; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        @keyframes popIn { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+
+        @media only screen and (max-width: 600px) {
+            form > section.form-body { padding: 2em 1.5em; }
+            header ul { display: none; } /* Simplified mobile header for this snippet */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <<header>
+        <div class="header-logos">
+            <!-- Replace these 'src' attributes with the actual paths to your logo image files -->
+            <img src="Crest - White.png" alt="Dharmaraja College Logo" /></a>
+            <img src="ICT - White.png" alt="SYNC Logo" /></a>
+        </div>
+    </header>
+
+    <main>
+        <h1 class="title">ICT Society Registration</h1>
+        <p class="subtitle">New Member Recruitment Form. Please fill out all the necessary details accurately.<br>(<label><span>*</span></label><span> means compulsory)</span></p>
+
+        <form id="recruitmentForm">
+            <section class="form-body">
+                
+                <!-- STEP 1: Personal Info -->
+                <div class="step active">
+                    <h3 class="step-title">1. Personal Information</h3>
+                    
+                    <div class="input-group">
+                        <label>Full Name <span>*</span></label>
+                        <input type="text" name="full_name" required placeholder="Your answer">
+                    </div>
+                    <div class="input-group">
+                        <label>Name with Initials <span>*</span></label>
+                        <input type="text" name="name_initials" required placeholder="Your answer">
+                    </div>
+                    <div class="input-group">
+                        <label>Date of Birth <span>*</span></label>
+                        <input type="date" name="dob" required>
+                    </div>
+                    <div class="input-group">
+                        <label>Grade / Class <span>*</span></label>
+                        <input type="text" name="grade_class" required placeholder="e.g., 10-A">
+                    </div>
+                    <div class="input-group">
+                        <label>Admission Number <span>*</span></label>
+                        <input type="text" name="admission_no" required placeholder="Your answer">
+                    </div>
+                    <div class="input-group">
+                        <label>Address <span>*</span></label>
+                        <textarea name="address" required placeholder="Your answer"></textarea>
+                    </div>
+                    <div class="input-group">
+                        <label>Email Address <span>*</span></label>
+                        <input type="email" name="email" required placeholder="Your answer">
+                    </div>
+                    <div class="input-group">
+                        <label>Contact Number <span>*</span></label>
+                        <input type="tel" name="contact_no" required placeholder="Your answer">
+                    </div>
+                    <div class="input-group">
+                        <label>WhatsApp Number <span>*</span></label>
+                        <input type="tel" name="whatsapp_no" required placeholder="Your answer">
+                    </div>
+                </div>
+
+                <!-- STEP 2: Guardian Details -->
+                <div class="step">
+                    <h3 class="step-title">2. Parent/Guardian Details</h3>
+                    <div class="input-group">
+                        <label>Parent/Guardian Name <span>*</span></label>
+                        <input type="text" name="guardian_name" required placeholder="Your answer">
+                    </div>
+                    <div class="input-group">
+                        <label>Parent/Guardian Contact Number <span>*</span></label>
+                        <input type="tel" name="guardian_contact" required placeholder="Your answer">
+                    </div>
+                </div>
+
+                <!-- STEP 3: ICT Background -->
+                <div class="step">
+                    <h3 class="step-title">3. ICT Background</h3>
+                    <div class="input-group">
+                        <label>Do you have a personal computer/laptop at home? <span>*</span></label>
+                        <div class="options-group">
+                            <label class="option-item"><input type="radio" name="has_pc" value="Yes" required> Yes</label>
+                            <label class="option-item"><input type="radio" name="has_pc" value="No"> No</label>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label>Rate your ICT knowledge <span>*</span></label>
+                        <select name="ict_level" required>
+                            <option value="" disabled selected>-- Select --</option>
+                            <option value="Beginner">Beginner</option>
+                            <option value="Intermediate">Intermediate</option>
+                            <option value="Advanced">Advanced</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label>Which areas of ICT are you most interested in? <span>*</span></label>
+                        <div class="options-group">
+                            <label class="option-item"><input type="checkbox" name="interests[]" value="Programming"> Programming</label>
+                            <label class="option-item"><input type="checkbox" name="interests[]" value="Web development"> Web development</label>
+                            <label class="option-item"><input type="checkbox" name="interests[]" value="Graphic design"> Graphic design</label>
+                            <label class="option-item"><input type="checkbox" name="interests[]" value="Video editing"> Video editing</label>
+                            <label class="option-item"><input type="checkbox" name="interests[]" value="Networking"> Networking</label>
+                            <label class="option-item"><input type="checkbox" name="interests[]" value="Robotics/IoT"> Robotics/IoT</label>
+                            <label class="option-item"><input type="checkbox" name="interests[]" value="Cybersecurity"> Cybersecurity</label>
+                            <label class="option-item"><input type="checkbox" name="interests[]" value="AI/ML"> AI/ML</label>
+                            <label class="option-item">
+                                <input type="checkbox" name="interests[]" value="Other"> Other
+                                <input type="text" name="interest_other" placeholder="Specify" style="width: auto; margin-left: 10px; border-bottom: 1px solid #fff3; padding: 0;">
+                            </label>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label>Any previous experience in ICT competitions/projects?</label>
+                        <textarea name="experience" placeholder="If yes, please specify"></textarea>
+                    </div>
+                </div>
+
+                <!-- STEP 4: Society Participation -->
+                <div class="step">
+                    <h3 class="step-title">4. Society Participation</h3>
+                    <div class="input-group">
+                        <label>Why do you want to join the ICT Society? <span>*</span></label>
+                        <textarea name="reason_join" required placeholder="Your answer"></textarea>
+                    </div>
+                    <div class="input-group">
+                        <label>How much time can you commit per week? <span>*</span></label>
+                        <select name="time_commit" required>
+                            <option value="" disabled selected>-- Select --</option>
+                            <option value="1-2 hours">1-2 hours</option>
+                            <option value="3-5 hours">3-5 hours</option>
+                            <option value="5+ hours">5+ hours</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label>Are you willing to participate in workshops after school? <span>*</span></label>
+                        <div class="options-group">
+                            <label class="option-item"><input type="radio" name="workshops" value="Yes" required> Yes</label>
+                            <label class="option-item"><input type="radio" name="workshops" value="No"> No</label>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label>Any special skills you can contribute to the society?</label>
+                        <textarea name="special_skills" placeholder="Your answer"></textarea>
+                    </div>
+                </div>
+
+                <!-- STEP 5: Declaration -->
+                <div class="step">
+                    <h3 class="step-title">5. Declaration</h3>
+                    <div class="input-group">
+                        <label class="option-item" style="align-items: flex-start; color: #ccc;">
+                            <input type="checkbox" name="declaration" required style="margin-top: 4px;"> 
+                            I agree to follow the rules and regulations of the Dharmaraja College ICT Society and participate actively in its events. <span>*</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Navigation Buttons -->
+                <div class="btn-container">
+                    <button type="button" class="btn-prev" id="prevBtn" onclick="nextPrev(-1)" style="display: none;">Back</button>
+                    <!-- Spacer if prev button is hidden -->
+                    <div id="btnSpacer" style="flex:1;"></div>
+                    <button type="button" id="nextBtn" onclick="nextPrev(1)">Next Step</button>
+                </div>
+
+            </section>
+        </form>
+    </main>
+
+    <!-- Footer -->
+    <footer id="footer">
+    <img src="imgs/favicon.png" alt="Sync24 Logo" />
+    <hr />
+    <section>
+      <a href="https://facebook.com/drcicts" target="_blank"><img src="imgs/fb.png" alt="facebook" /></a>
+      <a href="https://instagram.com/drcicts" target="_blank"><img src="imgs/insta.png" alt="instagram" /></a>
+      <a href="https://www.youtube.com/@drcicts" target="_blank"><img src="imgs/yt.png" alt="Youtube" /></a>
+    </section>
+    <p>COPYRIGHT 2026 © DHARMARAJA COLLEGE ICT SOCIETY.</p>
+  </footer>
+
+    <!-- Technological Loader -->
+    <div class="loader-overlay" id="loader">
+        <div class="tech-loader">
+            <div></div><div></div><div></div>
+        </div>
+    </div>
+
+    <!-- Success Popup -->
+    <div class="popup-overlay" id="successPopup">
+        <div class="popup-box">
+            <h2>Registration Successful!</h2>
+            <p>Welcome to the Dharmaraja College ICT Society. Your details have been securely recorded.</p>
+            <button onclick="location.reload()">Return Home</button>
+        </div>
+    </div>
+
+    <!-- Multi-Step Logic & AJAX Form Submission -->
+    <script>
+        let currentStep = 0;
+        const steps = document.querySelectorAll('.step');
+
+        function showStep(n) {
+            steps.forEach(step => step.classList.remove('active'));
+            steps[n].classList.add('active');
+            
+            const prevBtn = document.getElementById('prevBtn');
+            const spacer = document.getElementById('btnSpacer');
+            
+            if (n === 0) {
+                prevBtn.style.display = 'none';
+                spacer.style.display = 'block';
+            } else {
+                prevBtn.style.display = 'inline-block';
+                spacer.style.display = 'none';
+            }
+            
+            if (n === (steps.length - 1)) {
+                document.getElementById('nextBtn').innerHTML = 'Submit Registration';
+            } else {
+                document.getElementById('nextBtn').innerHTML = 'Next Step';
+            }
+        }
+
+        function validateForm() {
+            let valid = true;
+            const currentInputs = steps[currentStep].querySelectorAll('input[required], textarea[required], select[required]');
+            
+            currentInputs.forEach(input => {
+                if (!input.checkValidity()) {
+                    input.reportValidity();
+                    valid = false;
+                }
+            });
+
+            // Special validation for checkboxes on Step 3
+            if (currentStep === 2) {
+                const checkboxes = steps[2].querySelectorAll('input[name="interests[]"]');
+                const isChecked = Array.from(checkboxes).some(cb => cb.checked);
+                if (!isChecked) {
+                    alert("Please select at least one area of ICT you are interested in.");
+                    valid = false;
+                }
+            }
+            return valid;
+        }
+
+        function nextPrev(n) {
+            // Validate before going to the next step
+            if (n === 1 && !validateForm()) return false;
+            
+            // If user reaches end, submit the form
+            if (currentStep + n >= steps.length) {
+                submitForm();
+                return false;
+            }
+            
+            currentStep += n;
+            showStep(currentStep);
+            
+            // Scroll to top of the form smoothly
+            document.querySelector('.form-body').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        function submitForm() {
+            const form = document.getElementById('recruitmentForm');
+            const formData = new FormData(form);
+            
+            // Display technological loader
+            document.getElementById('loader').style.display = 'flex';
+
+            // Push to PHP Backend via Fetch API
+            fetch('submit.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('loader').style.display = 'none';
+                if(data.status === 'success') {
+                    document.getElementById('successPopup').style.display = 'flex';
+                } else {
+                    alert('Server Error: ' + data.message);
+                }
+            })
+            .catch(error => {
+                document.getElementById('loader').style.display = 'none';
+                alert('An error occurred. Please check your internet connection.');
+                console.error(error);
+            });
+        }
+    </script>
+</body>
+</html>

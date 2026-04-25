@@ -3,146 +3,98 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dharmaraja College ICT Society - Home</title>
+    <title>Dharmaraja College ICT Society - Registration</title>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        /* --- Base Styles --- */
+        /* --- Base Styles from Provided CSS --- */
         :root {
             --theme-color-0x0: #e0c02e;
-            --theme-color-st: #d3b01536; /* Semi-transparent gold */
+            --theme-color-st: #d3b01536;
         }
 
         html { scroll-behavior: smooth; }
 
         * { margin: 0; padding: 0; color: white; box-sizing: border-box; }
 
-        /* Typography */
+        /* Using standard fallbacks if custom fonts are missing locally */
         h1, h2, h3, h4, a { font-family: "Aquatico", "Segoe UI", sans-serif; }
-        span, p, button { font-family: "OpenSans", "Open Sans", sans-serif; }
+        span, li, label, p, input, select, textarea, button { font-family: "OpenSans", "Open Sans", sans-serif; }
 
-        body { background-color: #0d0d0d; min-height: 100vh; overflow-x: hidden; display: flex; flex-direction: column; }
-        
-        /* --- Header (2 Centered Logos) --- */
-        header {
-            position: fixed; top: 0; background-color: rgba(13, 13, 13, 0.85);
-            backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
-            height: 100px; width: 100%; z-index: 50;
+        body { background-color: #0d0d0d; min-height: 100vh; overflow-x: hidden; }
+        main { padding-bottom: 80px; padding-top: 120px; }
+
+         header {
+            position: fixed; top: 0; background-color: #0d0d0d;
+            height: 100px; width: 100%; z-index: 10;
             border-bottom: 1px solid rgba(255,255,255,0.1);
             display: flex; justify-content: center; align-items: center;
         }
-        .header-logos { display: flex; gap: 4em; justify-content: center; align-items: center; }
-        .header-logos a img {
-            height: 65px; width: auto; object-fit: contain;
+        .header-logos {
+            display: flex; 
+            gap: 1em; 
+            justify-content: center; 
+            align-items: center;
+        }
+        .header-logos img {
+            height: 65px; /* Adjust height to fit your logos */
+            width: auto;
+            object-fit: contain;
             transition: transform 0.3s ease, filter 0.3s ease;
         }
         .header-logos a:hover img {
-            transform: scale(1.05); filter: drop-shadow(0px 0px 12px var(--theme-color-st));
+            transform: scale(1.05);
+            filter: drop-shadow(0px 0px 12px var(--theme-color-st));
         }
 
-        /* --- Hero Section (Technological Giant Block) --- */
-        .hero-section {
-            margin-top: 45px;
-            position: relative;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            overflow: hidden;
-            padding: 0 20px;
-            /* Technological Grid Background */
-            background-color: #0d0d0d;
-            background-image: 
-                linear-gradient(rgba(224, 192, 46, 0.05) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(224, 192, 46, 0.05) 1px, transparent 1px);
-            background-size: 40px 40px;
-            background-position: center center;
+
+        /* --- Typography & Layout --- */
+        h1.title { text-align: center; font-size: 2.5em; text-shadow: 0px 0px 20px #fff8; margin-bottom: 10px; }
+        p.subtitle { text-align: center; max-width: 800px; margin: 0 auto 40px auto; font-size: 1.1em; padding: 0 20px; }
+        label span { color: red; font-size: 1.2em; padding-left: 5px; }
+
+        /* --- Form Container --- */
+        form { max-width: 800px; margin: auto; padding: 1.5em; }
+        form > section.form-body {
+            background-color: #232222e0; border-radius: 1em; padding: 3.5em;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.05);
         }
 
-        /* Glowing Center Orb Effect */
-        .hero-section::before {
-            content: "";
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 60vw;
-            height: 60vw;
-            max-width: 800px;
-            max-height: 800px;
-            background: radial-gradient(circle, var(--theme-color-st) 0%, transparent 60%);
-            z-index: 1;
-            pointer-events: none;
+        /* --- Inputs --- */
+        .input-group { margin-bottom: 2em; display: flex; flex-direction: column; }
+        .input-group label { font-weight: 600; margin-bottom: 8px; font-size: 0.95em; color: #ccc;}
+        
+        input[type="text"], input[type="email"], input[type="tel"], input[type="number"], input[type="date"], textarea, select {
+            width: 100%; background-color: transparent; font-size: 1em;
+            padding: 0.7em 0 0.4em; border: none; border-bottom: 1px solid #fff8;
+            outline: none; transition: border-bottom 0.3s;
         }
+        input:focus, textarea:focus, select:focus { border-bottom: 1px solid var(--theme-color-0x0); }
+        textarea { resize: vertical; min-height: 40px; }
+        select { background-color: #0d0d0d; color: white; cursor: pointer; }
+        select option { background-color: #232222; }
+        input[type="date"]::-webkit-calendar-picker-indicator { filter: invert(1); cursor: pointer; }
 
-        /* Top and Bottom Fade to blend grid */
-        .hero-section::after {
-            content: "";
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(180deg, #0d0d0d 0%, transparent 20%, transparent 80%, #0d0d0d 100%);
-            z-index: 2;
-            pointer-events: none;
-        }
+        /* Radio & Checkbox Styling */
+        .options-group { display: flex; flex-direction: column; gap: 10px; margin-top: 10px; }
+        .option-item { display: flex; align-items: center; gap: 10px; cursor: pointer; }
+        .option-item input { width: 18px; height: 18px; accent-color: var(--theme-color-0x0); cursor: pointer; }
 
-        /* Hero Content */
-        .hero-content {
-            position: relative;
-            z-index: 10;
-            max-width: 900px;
-            animation: fadeIn 1s ease-out;
-        }
+        /* --- Multi-step Logic --- */
+        .step { display: none; animation: fadeIn 0.4s ease; }
+        .step.active { display: block; }
+        .step-title { font-size: 1.5em; color: var(--theme-color-0x0); margin-bottom: 1.5em; border-bottom: 1px dashed #fff3; padding-bottom: 10px; }
 
-        .hero-subtitle {
-            font-size: 1.2rem;
-            color: var(--theme-color-0x0);
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            margin-bottom: 15px;
-            font-weight: 600;
+        /* --- Buttons --- */
+        .btn-container { display: flex; justify-content: space-between; margin-top: 2em; padding-top: 1em; border-top: 1px solid #fff3;}
+        button {
+            padding: 0.6em 2em; font-size: 1rem; text-transform: uppercase;
+            color: var(--theme-color-0x0); border-radius: 30px; font-weight: 700;
+            letter-spacing: 1px; transition: 300ms; cursor: pointer;
+            border: 1px solid var(--theme-color-0x0); background-color: transparent;
         }
-
-        .hero-title {
-            font-size: 4.5rem;
-            line-height: 1.1;
-            text-shadow: 0px 0px 30px rgba(224, 192, 46, 0.4);
-            margin-bottom: 25px;
-        }
-
-        .hero-desc {
-            font-size: 1.1rem;
-            color: #cccccc;
-            max-width: 600px;
-            margin: 0 auto 40px auto;
-            line-height: 1.6;
-        }
-
-        /* --- Call to Action Button --- */
-        .btn-register {
-            display: inline-block;
-            padding: 15px 40px;
-            font-size: 1.2rem;
-            text-transform: uppercase;
-            color: var(--theme-color-0x0);
-            border-radius: 40px;
-            font-weight: 700;
-            letter-spacing: 2px;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            border: 2px solid var(--theme-color-0x0);
-            background-color: rgba(13, 13, 13, 0.8);
-            box-shadow: 0px 0px 20px rgba(224, 192, 46, 0.2);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .btn-register:hover {
-            background-color: var(--theme-color-st);
-            box-shadow: 0px 0px 30px rgba(224, 192, 46, 0.5);
-            color: white;
-            transform: translateY(-3px);
-        }
+        button:hover { background-color: var(--theme-color-st); box-shadow: 0px 0px 15px var(--theme-color-st); }
+        .btn-prev { color: #fff; border-color: #fff8; }
+        .btn-prev:hover { background-color: rgba(255,255,255,0.1); box-shadow: none;}
 
         /* --- Footer --- */
         footer {
@@ -206,53 +158,212 @@
     }
 }
 
-
-        /* Animations */
-        @keyframes fadeIn { 
-            from { opacity: 0; transform: translateY(30px); } 
-            to { opacity: 1; transform: translateY(0); } 
+        /* --- Loader (Gold/Dark Theme) --- */
+        .loader-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(13, 13, 13, 0.9); display: none;
+            justify-content: center; align-items: center; z-index: 1000;
         }
-
-        /* Responsive Design */
-        @media only screen and (max-width: 768px) {
-            .hero-title { font-size: 3rem; }
-            .hero-subtitle { font-size: 1rem; }
-            .hero-desc { font-size: 1rem; padding: 0 10px; }
-            .header-logos { gap: 1.5em; }
-            .header-logos a img { height: 45px; }
+        .tech-loader { width: 80px; height: 80px; position: relative; }
+        .tech-loader div {
+            box-sizing: border-box; position: absolute; width: 100%; height: 100%;
+            border: 3px solid transparent; border-radius: 50%;
         }
-        
-        @media only screen and (max-width: 480px) {
-            .hero-title { font-size: 2.2rem; }
-            .btn-register { padding: 12px 30px; font-size: 1rem; }
+        .tech-loader div:nth-child(1) { border-top-color: var(--theme-color-0x0); animation: spin 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite; }
+        .tech-loader div:nth-child(2) { border-right-color: #fff; animation: spin 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite reverse; inset: 10px; width: calc(100% - 20px); height: calc(100% - 20px); }
+        .tech-loader div:nth-child(3) { border-bottom-color: var(--theme-color-0x0); animation: spin 1.5s linear infinite; inset: 20px; width: calc(100% - 40px); height: calc(100% - 40px); }
+
+        /* --- Success Popup --- */
+        .popup-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.8); display: none; justify-content: center; align-items: center; z-index: 1001;
+        }
+        .popup-box {
+            background: #232222; padding: 40px; border-radius: 1em; text-align: center; max-width: 400px;
+            border: 1px solid var(--theme-color-0x0); box-shadow: 0 0 30px var(--theme-color-st);
+            animation: popIn 0.4s ease;
+        }
+        .popup-box h2 { color: var(--theme-color-0x0); margin-bottom: 15px; font-size: 1.8em;}
+        .popup-box p { color: #ccc; margin-bottom: 25px; line-height: 1.5; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        @keyframes popIn { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+
+        @media only screen and (max-width: 600px) {
+            form > section.form-body { padding: 2em 1.5em; }
+            header ul { display: none; } /* Simplified mobile header for this snippet */
         }
     </style>
 </head>
 <body>
 
-    <!-- Header with 2 Centered Logos -->
-    <header>
+    <!-- Header -->
+    <<header>
         <div class="header-logos">
-            <a href=""><img src="Crest - White.png" alt="Dharmaraja College Logo" /></a>
-            <a href=""><img src="ICT - White.png" alt="SYNC Logo" /></a>
+            <!-- Replace these 'src' attributes with the actual paths to your logo image files -->
+            <img src="Crest - White.png" alt="Dharmaraja College Logo" /></a>
+            <img src="ICT - White.png" alt="SYNC Logo" /></a>
         </div>
     </header>
 
-    <!-- Giant Technological Block / Hero Section -->
-    <main class="hero-section">
-        <div class="hero-content">
-            <p class="hero-subtitle">Dharmaraja College ICT Society</p>
-            <h1 class="hero-title">NEW MEMBER<br>RECRUITMENT</h1>
-            <p class="hero-desc">
-                Step into the future of technology. Join the ultimate club for innovators, programmers, and creators. Shape your path in the digital world with us.
-            </p>
-            
-            <!-- Link this to your form file -->
-            <a href="form.html" class="btn-register">Register Now</a>
-        </div>
+    <main>
+        <h1 class="title">ICT Society Registration</h1>
+        <p class="subtitle">New Member Recruitment Form. Please fill out all the necessary details accurately.<br>(<label><span>*</span></label><span> means compulsory)</span></p>
+
+        <form id="recruitmentForm">
+            <section class="form-body">
+                
+                <!-- STEP 1: Personal Info -->
+                <div class="step active">
+                    <h3 class="step-title">1. Personal Information</h3>
+                    
+                    <div class="input-group">
+                        <label>Full Name <span>*</span></label>
+                        <input type="text" name="full_name" required placeholder="Your answer">
+                    </div>
+                    <div class="input-group">
+                        <label>Name with Initials <span>*</span></label>
+                        <input type="text" name="name_initials" required placeholder="Your answer">
+                    </div>
+                    <div class="input-group">
+                        <label>Date of Birth <span>*</span></label>
+                        <input type="date" name="dob" required>
+                    </div>
+                    <div class="input-group">
+                        <label>Grade / Class <span>*</span></label>
+                        <input type="text" name="grade_class" required placeholder="e.g., 10-A">
+                    </div>
+                    <div class="input-group">
+                        <label>Admission Number <span>*</span></label>
+                        <input type="text" name="admission_no" required placeholder="Your answer">
+                    </div>
+                    <div class="input-group">
+                        <label>Address <span>*</span></label>
+                        <textarea name="address" required placeholder="Your answer"></textarea>
+                    </div>
+                    <div class="input-group">
+                        <label>Email Address <span>*</span></label>
+                        <input type="email" name="email" required placeholder="Your answer">
+                    </div>
+                    <div class="input-group">
+                        <label>Contact Number <span>*</span></label>
+                        <input type="tel" name="contact_no" required placeholder="Your answer">
+                    </div>
+                    <div class="input-group">
+                        <label>WhatsApp Number <span>*</span></label>
+                        <input type="tel" name="whatsapp_no" required placeholder="Your answer">
+                    </div>
+                </div>
+
+                <!-- STEP 2: Guardian Details -->
+                <div class="step">
+                    <h3 class="step-title">2. Parent/Guardian Details</h3>
+                    <div class="input-group">
+                        <label>Parent/Guardian Name <span>*</span></label>
+                        <input type="text" name="guardian_name" required placeholder="Your answer">
+                    </div>
+                    <div class="input-group">
+                        <label>Parent/Guardian Contact Number <span>*</span></label>
+                        <input type="tel" name="guardian_contact" required placeholder="Your answer">
+                    </div>
+                </div>
+
+                <!-- STEP 3: ICT Background -->
+                <div class="step">
+                    <h3 class="step-title">3. ICT Background</h3>
+                    <div class="input-group">
+                        <label>Do you have a personal computer/laptop at home? <span>*</span></label>
+                        <div class="options-group">
+                            <label class="option-item"><input type="radio" name="has_pc" value="Yes" required> Yes</label>
+                            <label class="option-item"><input type="radio" name="has_pc" value="No"> No</label>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label>Rate your ICT knowledge <span>*</span></label>
+                        <select name="ict_level" required>
+                            <option value="" disabled selected>-- Select --</option>
+                            <option value="Beginner">Beginner</option>
+                            <option value="Intermediate">Intermediate</option>
+                            <option value="Advanced">Advanced</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label>Which areas of ICT are you most interested in? <span>*</span></label>
+                        <div class="options-group">
+                            <label class="option-item"><input type="checkbox" name="interests[]" value="Programming"> Programming</label>
+                            <label class="option-item"><input type="checkbox" name="interests[]" value="Web development"> Web development</label>
+                            <label class="option-item"><input type="checkbox" name="interests[]" value="Graphic design"> Graphic design</label>
+                            <label class="option-item"><input type="checkbox" name="interests[]" value="Video editing"> Video editing</label>
+                            <label class="option-item"><input type="checkbox" name="interests[]" value="Networking"> Networking</label>
+                            <label class="option-item"><input type="checkbox" name="interests[]" value="Robotics/IoT"> Robotics/IoT</label>
+                            <label class="option-item"><input type="checkbox" name="interests[]" value="Cybersecurity"> Cybersecurity</label>
+                            <label class="option-item"><input type="checkbox" name="interests[]" value="AI/ML"> AI/ML</label>
+                            <label class="option-item">
+                                <input type="checkbox" name="interests[]" value="Other"> Other
+                                <input type="text" name="interest_other" placeholder="Specify" style="width: auto; margin-left: 10px; border-bottom: 1px solid #fff3; padding: 0;">
+                            </label>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label>Any previous experience in ICT competitions/projects?</label>
+                        <textarea name="experience" placeholder="If yes, please specify"></textarea>
+                    </div>
+                </div>
+
+                <!-- STEP 4: Society Participation -->
+                <div class="step">
+                    <h3 class="step-title">4. Society Participation</h3>
+                    <div class="input-group">
+                        <label>Why do you want to join the ICT Society? <span>*</span></label>
+                        <textarea name="reason_join" required placeholder="Your answer"></textarea>
+                    </div>
+                    <div class="input-group">
+                        <label>How much time can you commit per week? <span>*</span></label>
+                        <select name="time_commit" required>
+                            <option value="" disabled selected>-- Select --</option>
+                            <option value="1-2 hours">1-2 hours</option>
+                            <option value="3-5 hours">3-5 hours</option>
+                            <option value="5+ hours">5+ hours</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label>Are you willing to participate in workshops after school? <span>*</span></label>
+                        <div class="options-group">
+                            <label class="option-item"><input type="radio" name="workshops" value="Yes" required> Yes</label>
+                            <label class="option-item"><input type="radio" name="workshops" value="No"> No</label>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label>Any special skills you can contribute to the society?</label>
+                        <textarea name="special_skills" placeholder="Your answer"></textarea>
+                    </div>
+                </div>
+
+                <!-- STEP 5: Declaration -->
+                <div class="step">
+                    <h3 class="step-title">5. Declaration</h3>
+                    <div class="input-group">
+                        <label class="option-item" style="align-items: flex-start; color: #ccc;">
+                            <input type="checkbox" name="declaration" required style="margin-top: 4px;"> 
+                            I agree to follow the rules and regulations of the Dharmaraja College ICT Society and participate actively in its events. <span>*</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Navigation Buttons -->
+                <div class="btn-container">
+                    <button type="button" class="btn-prev" id="prevBtn" onclick="nextPrev(-1)" style="display: none;">Back</button>
+                    <!-- Spacer if prev button is hidden -->
+                    <div id="btnSpacer" style="flex:1;"></div>
+                    <button type="button" id="nextBtn" onclick="nextPrev(1)">Next Step</button>
+                </div>
+
+            </section>
+        </form>
     </main>
 
-       <!-- Footer -->
+    <!-- Footer -->
     <footer id="footer">
     <img src="imgs/favicon.png" alt="Sync24 Logo" />
     <hr />
@@ -263,5 +374,135 @@
     </section>
     <p>COPYRIGHT 2026 © DHARMARAJA COLLEGE ICT SOCIETY.</p>
   </footer>
+
+    <!-- Technological Loader -->
+    <div class="loader-overlay" id="loader">
+        <div class="tech-loader">
+            <div></div><div></div><div></div>
+        </div>
+    </div>
+
+    <div class="popup-overlay" id="successPopup">
+        <div class="popup-box">
+            <h2>Registration Successful!</h2>
+            <p>Welcome to the Dharmaraja College ICT Society. Your details have been securely recorded.</p>
+            
+            <!-- WhatsApp Links Section -->
+            <div class="whatsapp-section">
+                <p>Join our official WhatsApp group: <strong>AL Section</strong><br>
+                <a href="[link]" target="_blank" class="wa-link">
+                    <!-- WhatsApp Icon SVG -->
+                    <svg viewBox="0 0 24 24"><path d="M12.031 21.071c-1.636-.002-3.238-.431-4.66-1.242l-.334-.19-3.468.91 1.01-3.376-.208-.332C3.473 15.348 3.003 13.693 3.003 12c0-4.962 4.04-9 9.014-9 4.975 0 9.027 4.038 9.027 9s-4.052 9-9.013 9.071zm0-16.571c-4.168 0-7.565 3.398-7.565 7.565 0 1.328.347 2.628 1.006 3.774l.115.2-1.026 3.428 3.513-.922.193.115c1.118.665 2.392 1.014 3.708 1.014h.003c4.165 0 7.562-3.397 7.562-7.565 0-4.167-3.397-7.564-7.562-7.564zm4.07 10.354c-.223-.112-1.321-.653-1.526-.728-.205-.074-.355-.112-.505.112-.149.224-.577.728-.707.878-.13.149-.26.168-.483.056-.224-.112-.943-.348-1.796-1.112-.663-.593-1.112-1.327-1.242-1.55-.131-.224-.014-.346.098-.458.1-.1.224-.261.336-.392.112-.131.149-.224.224-.373.075-.15.037-.281-.019-.392-.056-.112-.505-1.216-.692-1.664-.181-.437-.367-.378-.505-.385-.13-.006-.28-.007-.43-.007-.149 0-.392.056-.598.281-.205.224-.784.766-.784 1.868s.803 2.167.915 2.316c.112.149 1.58 2.414 3.827 3.385.534.232.952.37 1.28.473.536.171 1.025.147 1.413.089.435-.065 1.321-.541 1.508-1.064.186-.523.186-.971.13-1.064-.055-.094-.204-.15-.428-.262z"/></svg>
+                    Join AL Group
+                </a></p>
+                
+                <p>Join our official WhatsApp group: <strong>Middle Section</strong><br>
+                <a href="[link]" target="_blank" class="wa-link">
+                    <!-- WhatsApp Icon SVG -->
+                    <svg viewBox="0 0 24 24"><path d="M12.031 21.071c-1.636-.002-3.238-.431-4.66-1.242l-.334-.19-3.468.91 1.01-3.376-.208-.332C3.473 15.348 3.003 13.693 3.003 12c0-4.962 4.04-9 9.014-9 4.975 0 9.027 4.038 9.027 9s-4.052 9-9.013 9.071zm0-16.571c-4.168 0-7.565 3.398-7.565 7.565 0 1.328.347 2.628 1.006 3.774l.115.2-1.026 3.428 3.513-.922.193.115c1.118.665 2.392 1.014 3.708 1.014h.003c4.165 0 7.562-3.397 7.562-7.565 0-4.167-3.397-7.564-7.562-7.564zm4.07 10.354c-.223-.112-1.321-.653-1.526-.728-.205-.074-.355-.112-.505.112-.149.224-.577.728-.707.878-.13.149-.26.168-.483.056-.224-.112-.943-.348-1.796-1.112-.663-.593-1.112-1.327-1.242-1.55-.131-.224-.014-.346.098-.458.1-.1.224-.261.336-.392.112-.131.149-.224.224-.373.075-.15.037-.281-.019-.392-.056-.112-.505-1.216-.692-1.664-.181-.437-.367-.378-.505-.385-.13-.006-.28-.007-.43-.007-.149 0-.392.056-.598.281-.205.224-.784.766-.784 1.868s.803 2.167.915 2.316c.112.149 1.58 2.414 3.827 3.385.534.232.952.37 1.28.473.536.171 1.025.147 1.413.089.435-.065 1.321-.541 1.508-1.064.186-.523.186-.971.13-1.064-.055-.094-.204-.15-.428-.262z"/></svg>
+                    Join Middle Section Group
+                </a></p>
+            </div>
+
+            <!-- Returns to Homepage (index.html) -->
+            <button onclick="window.location.href='index.html'">Return Home</button>
+        </div>
+    </div>
+
+    <!-- Multi-Step Logic & AJAX Form Submission -->
+    <script>
+        let currentStep = 0;
+        const steps = document.querySelectorAll('.step');
+
+        function showStep(n) {
+            steps.forEach(step => step.classList.remove('active'));
+            steps[n].classList.add('active');
+            
+            const prevBtn = document.getElementById('prevBtn');
+            const spacer = document.getElementById('btnSpacer');
+            
+            if (n === 0) {
+                prevBtn.style.display = 'none';
+                spacer.style.display = 'block';
+            } else {
+                prevBtn.style.display = 'inline-block';
+                spacer.style.display = 'none';
+            }
+            
+            if (n === (steps.length - 1)) {
+                document.getElementById('nextBtn').innerHTML = 'Submit Registration';
+            } else {
+                document.getElementById('nextBtn').innerHTML = 'Next Step';
+            }
+        }
+
+        function validateForm() {
+            let valid = true;
+            const currentInputs = steps[currentStep].querySelectorAll('input[required], textarea[required], select[required]');
+            
+            currentInputs.forEach(input => {
+                if (!input.checkValidity()) {
+                    input.reportValidity();
+                    valid = false;
+                }
+            });
+
+            // Special validation for checkboxes on Step 3
+            if (currentStep === 2) {
+                const checkboxes = steps[2].querySelectorAll('input[name="interests[]"]');
+                const isChecked = Array.from(checkboxes).some(cb => cb.checked);
+                if (!isChecked) {
+                    alert("Please select at least one area of ICT you are interested in.");
+                    valid = false;
+                }
+            }
+            return valid;
+        }
+
+        function nextPrev(n) {
+            // Validate before going to the next step
+            if (n === 1 && !validateForm()) return false;
+            
+            // If user reaches end, submit the form
+            if (currentStep + n >= steps.length) {
+                submitForm();
+                return false;
+            }
+            
+            currentStep += n;
+            showStep(currentStep);
+            
+            // Scroll to top of the form smoothly
+            document.querySelector('.form-body').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        function submitForm() {
+            const form = document.getElementById('recruitmentForm');
+            const formData = new FormData(form);
+            
+            // Display technological loader
+            document.getElementById('loader').style.display = 'flex';
+
+            // Push to PHP Backend via Fetch API
+            fetch('submit.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('loader').style.display = 'none';
+                if(data.status === 'success') {
+                    document.getElementById('successPopup').style.display = 'flex';
+                } else {
+                    alert('Server Error: ' + data.message);
+                }
+            })
+            .catch(error => {
+                document.getElementById('loader').style.display = 'none';
+                alert('An error occurred. Please check your internet connection.');
+                console.error(error);
+            });
+        }
+    </script>
 </body>
 </html>

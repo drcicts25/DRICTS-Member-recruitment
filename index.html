@@ -1,9 +1,16 @@
+To add a logo to your browser tab (known as a **favicon**), you need to add a `<link>` tag inside the `<head>` section of your HTML.
+
+Based on your code, it looks like you already have a favicon image located at `imgs/favicon.png`. I have inserted the necessary line right after your `<title>` tag.
+
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dharmaraja College ICT Society - Home</title>
+    <link rel="icon" type="image/png" href="imgs/favicon.png">
+    
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         /* --- Base Styles --- */
@@ -230,7 +237,6 @@
 </head>
 <body>
 
-    <!-- Header with 2 Centered Logos -->
     <header>
         <div class="header-logos">
             <a href=""><img src="Crest - White.png" alt="Dharmaraja College Logo" /></a>
@@ -238,7 +244,6 @@
         </div>
     </header>
 
-    <!-- Giant Technological Block / Hero Section -->
     <main class="hero-section">
         <div class="hero-content">
             <p class="hero-subtitle">Dharmaraja College ICT Society</p>
@@ -247,13 +252,11 @@
                 Step into the future of technology. Join the ultimate club for innovators, programmers, and creators. Shape your path in the digital world with us.
             </p>
             
-            <!-- Link this to your form file -->
             <a href="form.html" class="btn-register">Register Now</a>
         </div>
     </main>
 
-       <!-- Footer -->
-    <footer id="footer">
+       <footer id="footer">
     <img src="imgs/favicon.png" alt="Sync24 Logo" />
     <hr />
     <section>
@@ -265,3 +268,4 @@
   </footer>
 </body>
 </html>
+```

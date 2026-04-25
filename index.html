@@ -22,7 +22,7 @@
 
         body { background-color: #0d0d0d; min-height: 100vh; overflow-x: hidden; display: flex; flex-direction: column; }
         
-        /* --- Header (2 Centered Logos) --- */
+        /* --- Header (Centered Logos) --- */
         header {
             position: fixed; top: 0; background-color: rgba(13, 13, 13, 0.85);
             backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
@@ -110,7 +110,7 @@
             margin-bottom: 25px;
         }
 
-        .hero-desc {
+.hero-desc {
             font-size: 1.1rem;
             color: #cccccc;
             max-width: 600px;
@@ -146,66 +146,63 @@
 
         /* --- Footer --- */
         footer {
-    background-color: #000;
+            background-color: #000;
+        }
 
-    /* Logo */
-    & > img {
-        display: block;
-        align-items: center;
-        width: 120px;
-        object-fit: cover;
-        padding: 6px;
-        padding-top: 6px;
-        margin: auto;
-    }
+        footer > img {
+            display: block;
+            width: 120px;
+            object-fit: cover;
+            padding: 6px;
+            margin: auto;
+        }
 
-    /* Navigation */
-    & > ul {
-        list-style-type: none;
-        display: flex;
-        max-width: 700px;
-        justify-content: space-between;
-        margin: auto;
-        li {
+        footer > ul {
+            list-style-type: none;
+            display: flex;
+            max-width: 700px;
+            justify-content: space-between;
+            margin: auto;
+        }
+
+        footer > ul li {
             display: inline-block;
             position: relative;
-            & > a {
-                width: 10em;
-                text-decoration: none;
-                text-align: center;
-            }
         }
-    }
 
-    & > hr {
-        height: 2px;
-        border: none;
-        border-radius: 1px;
-        width: 80%;
-        background-color: var(--theme-color-0x0);
-        margin: 1.5em auto;
-    }
+        footer > ul li > a {
+            width: 10em;
+            text-decoration: none;
+            text-align: center;
+        }
 
-    /* Social links */
-    & > section {
-        display: flex;
-        margin: auto;
-        max-width: 400px;
-        justify-content: space-between;
-        padding: 0 0.01em;
-        & > a > img {
+        footer > hr {
+            height: 2px;
+            border: none;
+            border-radius: 1px;
+            width: 80%;
+            background-color: var(--theme-color-0x0);
+            margin: 1.5em auto;
+        }
+
+        footer > section {
+            display: flex;
+            margin: auto;
+            max-width: 400px;
+            justify-content: space-between;
+            padding: 0 0.01em;
+        }
+
+        footer > section > a > img {
             width: 40px;
         }
-    }
 
-    & > p {
-        text-align: center;
-        font-size: 0.8rem;
-        padding: 35px 0 20px;
-        color: rgb(174, 174, 174);
-    }
-}
-
+        footer > p {
+            text-align: center;
+            font-size: 0.8rem;
+            padding: 35px 0 20px;
+            color: rgb(174, 174, 174);
+        }
 
         /* Animations */
         @keyframes fadeIn { 
@@ -230,15 +227,14 @@
 </head>
 <body>
 
-    <!-- Header with 2 Centered Logos -->
     <header>
         <div class="header-logos">
             <a href=""><img src="Crest - White.png" alt="Dharmaraja College Logo" /></a>
+            <a href=""><img src="imgs/favicon.png" alt="ICT Society Logo" /></a>
             <a href=""><img src="ICT - White.png" alt="SYNC Logo" /></a>
         </div>
     </header>
 
-    <!-- Giant Technological Block / Hero Section -->
     <main class="hero-section">
         <div class="hero-content">
             <p class="hero-subtitle">Dharmaraja College ICT Society</p>
@@ -247,21 +243,19 @@
                 Step into the future of technology. Join the ultimate club for innovators, programmers, and creators. Shape your path in the digital world with us.
             </p>
             
-            <!-- Link this to your form file -->
             <a href="form.html" class="btn-register">Register Now</a>
         </div>
     </main>
 
-       <!-- Footer -->
-    <footer id="footer">
-    <img src="imgs/favicon.png" alt="Sync24 Logo" />
-    <hr />
-    <section>
-      <a href="https://facebook.com/drcicts" target="_blank"><img src="imgs/fb.png" alt="facebook" /></a>
-      <a href="https://instagram.com/drcicts" target="_blank"><img src="imgs/insta.png" alt="instagram" /></a>
-      <a href="https://www.youtube.com/@drcicts" target="_blank"><img src="imgs/yt.png" alt="Youtube" /></a>
-    </section>
-    <p>COPYRIGHT 2026 © DHARMARAJA COLLEGE ICT SOCIETY.</p>
-  </footer>
+<footer id="footer">
+        <img src="imgs/favicon.png" alt="Sync24 Logo" />
+        <hr />
+        <section>
+            <a href="https://facebook.com/drcicts" target="_blank"><img src="imgs/fb.png" alt="facebook" /></a>
+            <a href="https://instagram.com/drcicts" target="_blank"><img src="imgs/insta.png" alt="instagram" /></a>
+            <a href="https://www.youtube.com/@drcicts" target="_blank"><img src="imgs/yt.png" alt="Youtube" /></a>
+        </section>
+        <p>COPYRIGHT 2026 © DHARMARAJA COLLEGE ICT SOCIETY.</p>
+    </footer>
 </body>
 </html>
